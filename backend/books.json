@@ -1,0 +1,103 @@
+[
+    {
+      "bid": 1,
+      "book_name": "To Kill a Mockingbird",
+      "author": "Harper Lee",
+      "num": 10,
+      "press": "J.B. Lippincott & Co.",
+      "type_name": "Fiction",
+      "tid": 101,
+      "times": 25
+    },
+    {
+      "bid": 2,
+      "book_name": "1984",
+      "author": "George Orwell",
+      "num": 15,
+      "press": "Secker & Warburg",
+      "type_name": "Dystopian",
+      "tid": 102,
+      "times": 30
+    },
+    {
+      "bid": 3,
+      "book_name": "Pride and Prejudice",
+      "author": "Jane Austen",
+      "num": 8,
+      "press": "T. Egerton",
+      "type_name": "Romance",
+      "tid": 103,
+      "times": 20
+    },
+    {
+      "bid": 4,
+      "book_name": "The Great Gatsby",
+      "author": "F. Scott Fitzgerald",
+      "num": 12,
+      "press": "Charles Scribner's Sons",
+      "type_name": "Fiction",
+      "tid": 101,
+      "times": 18
+    },
+    {
+      "bid": 5,
+      "book_name": "Moby-Dick",
+      "author": "Herman Melville",
+      "num": 7,
+      "press": "Harper & Brothers",
+      "type_name": "Adventure",
+      "tid": 104,
+      "times": 14
+    },
+    {
+      "bid": 6,
+      "book_name": "War and Peace",
+      "author": "Leo Tolstoy",
+      "num": 9,
+      "press": "The Russian Messenger",
+      "type_name": "Historical",
+      "tid": 105,
+      "times": 22
+    },
+    {
+      "bid": 7,
+      "book_name": "The Catcher in the Rye",
+      "author": "J.D. Salinger",
+      "num": 11,
+      "press": "Little, Brown and Company",
+      "type_name": "Fiction",
+      "tid": 101,
+      "times": 19
+    },
+    {
+      "bid": 8,
+      "book_name": "The Hobbit",
+      "author": "J.R.R. Tolkien",
+      "num": 13,
+      "press": "George Allen & Unwin",
+      "type_name": "Fantasy",
+      "tid": 106,
+      "times": 24
+    },
+    {
+      "bid": 9,
+      "book_name": "Brave New World",
+      "author": "Aldous Huxley",
+      "num": 10,
+      "press": "Chatto & Windus",
+      "type_name": "Science Fiction",
+      "tid": 107,
+      "times": 17
+    },
+    {
+      "bid": 10,
+      "book_name": "Crime and Punishment",
+      "author": "Fyodor Dostoevsky",
+      "num": 6,
+      "press": "The Russian Messenger",
+      "type_name": "Philosophical Fiction",
+      "tid": 108,
+      "times": 15
+    }
+  ]
+  
