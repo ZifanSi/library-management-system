@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   TextField,
   Table,
@@ -12,29 +12,41 @@ import {
   Box,
   Typography,
 } from "@mui/material";
-
-const sampleBooks = [
-  { id: 1, type: "History", title: "World History", author: "John Smith", press: "Oxford Press", number: 5 },
-  { id: 2, type: "Programming", title: "Learn JavaScript", author: "Jane Doe", press: "Tech Press", number: 3 },
-];
+import axios from "axios"; // Axios for making API requests
 
 const BookSearchPage = () => {
-  const [searchQuery, setSearchQuery] = useState("");
-  const [books, setBooks] = useState(sampleBooks);
+  const [searchQuery, setSearchQuery] = useState(""); // Search query state
+  const [books, setBooks] = useState([]); // State for all books from the backend
+  const [filteredBooks, setFilteredBooks] = useState([]); // State for filtered books
+
+  // Fetch books from the backend on component load
+  useEffect(() => {
+    const fetchBooks = async () => {
+      try {
+        const response = await axios.get("http://localhost:5000/books"); // Backend API URL
+        setBooks(response.data); // Set the books state
+        setFilteredBooks(response.data); // Initialize filteredBooks with all books
+      } catch (error) {
+        console.error("Error fetching books:", error.message);
+      }
+    };
+
+    fetchBooks();
+  }, []);
 
   // Handle search functionality
   const handleSearch = (event) => {
     const query = event.target.value.toLowerCase();
     setSearchQuery(query);
 
-    const filteredBooks = sampleBooks.filter(
+    const filtered = books.filter(
       (book) =>
-        book.title.toLowerCase().includes(query) ||
-        book.author.toLowerCase().includes(query) ||
-        book.type.toLowerCase().includes(query)
+        book.book_name.toLowerCase().includes(query) ||
+        (book.author && book.author.toLowerCase().includes(query)) ||
+        (book.type_name && book.type_name.toLowerCase().includes(query))
     );
 
-    setBooks(filteredBooks);
+    setFilteredBooks(filtered);
   };
 
   // Handle Borrow Button Click
@@ -74,19 +86,19 @@ const BookSearchPage = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {books.map((book) => (
-              <TableRow key={book.id}>
-                <TableCell>{book.id}</TableCell>
-                <TableCell>{book.type}</TableCell>
-                <TableCell>{book.title || "Unknown"}</TableCell>
+            {filteredBooks.map((book) => (
+              <TableRow key={book.bid}>
+                <TableCell>{book.bid}</TableCell>
+                <TableCell>{book.type_name || "Unknown"}</TableCell>
+                <TableCell>{book.book_name || "Unknown"}</TableCell>
                 <TableCell>{book.author || "Unknown"}</TableCell>
                 <TableCell>{book.press || "Unknown"}</TableCell>
-                <TableCell>{book.number}</TableCell>
+                <TableCell>{book.num}</TableCell>
                 <TableCell>
                   <Button
                     variant="contained"
                     color="primary"
-                    onClick={() => handleBorrow(book.id)}
+                    onClick={() => handleBorrow(book.bid)}
                   >
                     Borrow
                   </Button>
