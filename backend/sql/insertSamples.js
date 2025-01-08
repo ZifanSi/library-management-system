@@ -1,5 +1,5 @@
-const { connectDB, sql } = require("./db");
-const books = require("./books.json");
+const { connectDB, sql } = require("../db/db");
+const books = require("../books.json");
 
 const insertSamples = async () => {
   try {
