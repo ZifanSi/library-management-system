@@ -22,3 +22,12 @@
 | F18          | Error Handling             | Displays user-friendly error messages for API or database failures.        |
 | F19          | Postman Testing            | Ensures backend endpoints work correctly through Postman testing.          |
 | F20          | Code Modularity            | Backend and frontend are structured in reusable and maintainable components. |
+
+# Database Tables Overview
+
+| Table Name | Description                                                                 |
+|------------|-----------------------------------------------------------------------------|
+| t_book     | Stores details about the books available in the library.                   |
+| t_history  | Tracks the borrowing and returning history of users.                       |
+| t_type     | Stores the different categories or genres of books (e.g., Fiction, Non-Fiction, Science, etc.). |
+| t_user     | Stores user information, including account details, borrowing limits, and roles. |
