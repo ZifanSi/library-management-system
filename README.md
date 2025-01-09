@@ -23,7 +23,7 @@
 | F19          | Postman Testing            | Ensures backend endpoints work correctly through Postman testing.          |
 | F20          | Code Modularity            | Backend and frontend are structured in reusable and maintainable components. |
 
-# Database Tables Overview
+# Database (SQL Server Management Studio)
 
 | Table Name | Description                                                                 |
 |------------|-----------------------------------------------------------------------------|
