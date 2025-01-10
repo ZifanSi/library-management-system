@@ -1,13 +1,20 @@
 const express = require('express');
 const cors = require('cors'); // Import the CORS middleware
+const bodyParser = require('body-parser'); // Import body-parser for parsing JSON requests
+const booksRoute = require('./routes/booksRoute'); // Import books route
+const userRoute = require('./routes/userRoute'); // Import user route
+
 const app = express();
-const booksRoute = require('./routes/booksRoute');
 
 // Enable CORS for all routes
 app.use(cors());
 
-// Use the /books route
-app.use('/books', booksRoute);
+// Parse incoming JSON requests
+app.use(bodyParser.json());
+
+// Routes
+app.use('/books', booksRoute); // Books route
+app.use('/user', userRoute); // User route
 
 // Start the server
 const PORT = 5000;
