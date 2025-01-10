@@ -1,8 +1,8 @@
-// File: /routes/booksRoute.js
 const express = require('express');
 const router = express.Router();
-const booksController = require('../controller/booksController'); // Correct import path
+const { getBooks, borrowBook } = require('../controller/booksController'); // Import borrowBook
 
-router.get('/', booksController.getBooks);
+router.get('/', getBooks);
+router.put("/borrow/:bid", borrowBook); // Borrow route
 
 module.exports = router;
