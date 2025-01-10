@@ -1,8 +1,17 @@
 import React from "react";
-import MainPage from "./MainPage";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import LoginPage from "./pages/LoginPage";
+import MainPage from "./pages/MainPage";
 
-function App() {
-  return <MainPage />;
-}
+const App = () => {
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<LoginPage />} />
+        <Route path="/main/*" element={<MainPage />} /> {/* Nested Routes */}
+      </Routes>
+    </Router>
+  );
+};
 
 export default App;
