@@ -23,11 +23,12 @@
 | F19          | Postman Testing            | Ensures backend endpoints work correctly through Postman testing.          |
 | F20          | Code Modularity            | Backend and frontend are structured in reusable and maintainable components. |
 
-## Database (SQL Server Management Studio)
+## Database
 
-| Table Name | Description                                                                 |
-|------------|-----------------------------------------------------------------------------|
-| t_book     | Stores details about the books available in the library.                   |
-| t_history  | Tracks the borrowing and returning history of users.                       |
-| t_type     | Stores the different categories or genres of books (e.g., Fiction, Non-Fiction, Science, etc.). |
-| t_user     | Stores user information, including account details, borrowing limits, and roles. |
+| ID   | Table Name | Description                                                                 |
+|------|------------|-----------------------------------------------------------------------------|
+| T01  | t_book     | Stores details about the books available in the library.                   |
+| T02  | t_history  | Tracks the borrowing and returning history of users.                       |
+| T03  | t_type     | Stores the different categories or genres of books (e.g., Fiction, Non-Fiction, Science, etc.). |
+| T04  | t_user     | Stores user information, including account details, borrowing limits, and roles. |
+

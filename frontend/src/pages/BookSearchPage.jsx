@@ -12,20 +12,20 @@ import {
   Box,
   Typography,
 } from "@mui/material";
-import axios from "axios"; // Axios for making API requests
+import axios from "axios";
 
 const BookSearchPage = () => {
-  const [searchQuery, setSearchQuery] = useState(""); // Search query state
-  const [books, setBooks] = useState([]); // State for all books from the backend
-  const [filteredBooks, setFilteredBooks] = useState([]); // State for filtered books
+  const [searchQuery, setSearchQuery] = useState("");
+  const [books, setBooks] = useState([]);
+  const [filteredBooks, setFilteredBooks] = useState([]);
 
-  // Fetch books from the backend on component load
+  // Fetch books from the backend
   useEffect(() => {
     const fetchBooks = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/books"); // Backend API URL
-        setBooks(response.data); // Set the books state
-        setFilteredBooks(response.data); // Initialize filteredBooks with all books
+        const response = await axios.get("http://localhost:5000/books");
+        setBooks(response.data);
+        setFilteredBooks(response.data);
       } catch (error) {
         console.error("Error fetching books:", error.message);
       }
@@ -50,8 +50,26 @@ const BookSearchPage = () => {
   };
 
   // Handle Borrow Button Click
-  const handleBorrow = (id) => {
-    alert(`You clicked Borrow for book ID: ${id}`);
+  const handleBorrow = async (bid) => {
+    try {
+      const response = await axios.put(`http://localhost:5000/books/borrow/${bid}`);
+      if (response.status === 200) {
+        alert("Book borrowed successfully!");
+        // Update the frontend book list
+        setBooks((prevBooks) =>
+          prevBooks.map((book) =>
+            book.bid === bid ? { ...book, num: book.num - 1 } : book
+          )
+        );
+        setFilteredBooks((prevBooks) =>
+          prevBooks.map((book) =>
+            book.bid === bid ? { ...book, num: book.num - 1 } : book
+          )
+        );
+      }
+    } catch (error) {
+      alert(error.response?.data?.message || "Error borrowing book");
+    }
   };
 
   return (
@@ -99,8 +117,9 @@ const BookSearchPage = () => {
                     variant="contained"
                     color="primary"
                     onClick={() => handleBorrow(book.bid)}
+                    disabled={book.num <= 0}
                   >
-                    Borrow
+                    {book.num > 0 ? "Borrow" : "Not Available"}
                   </Button>
                 </TableCell>
               </TableRow>
