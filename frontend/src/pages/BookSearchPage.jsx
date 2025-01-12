@@ -19,7 +19,8 @@ const BookSearchPage = () => {
   const [books, setBooks] = useState([]);
   const [filteredBooks, setFilteredBooks] = useState([]);
 
-  // Fetch books from the backend
+  const user = JSON.parse(localStorage.getItem("user")); // Retrieve logged-in user details
+
   useEffect(() => {
     const fetchBooks = async () => {
       try {
@@ -34,7 +35,6 @@ const BookSearchPage = () => {
     fetchBooks();
   }, []);
 
-  // Handle search functionality
   const handleSearch = (event) => {
     const query = event.target.value.toLowerCase();
     setSearchQuery(query);
@@ -49,13 +49,16 @@ const BookSearchPage = () => {
     setFilteredBooks(filtered);
   };
 
-  // Handle Borrow Button Click
   const handleBorrow = async (bid) => {
     try {
-      const response = await axios.put(`http://localhost:5000/books/borrow/${bid}`);
+      const response = await axios.put(`http://localhost:5000/books/borrow/${bid}`, {
+        uid: user.uid,
+        name: user.name,
+        account: user.account,
+      });
+
       if (response.status === 200) {
         alert("Book borrowed successfully!");
-        // Update the frontend book list
         setBooks((prevBooks) =>
           prevBooks.map((book) =>
             book.bid === bid ? { ...book, num: book.num - 1 } : book
@@ -74,12 +77,9 @@ const BookSearchPage = () => {
 
   return (
     <Box sx={{ padding: 3 }}>
-      {/* Page Title */}
       <Typography variant="h4" gutterBottom>
         Book Search
       </Typography>
-
-      {/* Search Bar */}
       <TextField
         label="Search Books"
         variant="outlined"
@@ -88,8 +88,6 @@ const BookSearchPage = () => {
         onChange={handleSearch}
         sx={{ marginBottom: 3 }}
       />
-
-      {/* Book List */}
       <TableContainer component={Paper}>
         <Table>
           <TableHead>

@@ -2,14 +2,20 @@ import React, { useState, useEffect } from "react";
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Typography } from "@mui/material";
 import axios from "axios";
 
-const BorrowingInformationPage = ({ userAccount }) => {
+const BorrowingInformationPage = () => {
   const [borrowingData, setBorrowingData] = useState([]);
+  const user = JSON.parse(localStorage.getItem("user")); // Retrieve logged-in user details
 
   useEffect(() => {
+    if (!user || !user.account) {
+      console.error("User not logged in or account not found");
+      return;
+    }
+
     const fetchBorrowingData = async () => {
       try {
         const response = await axios.get("http://localhost:5000/borrowing", {
-          params: { account: userAccount }, // Pass user account as query parameter
+          params: { account: user.account }, // Pass user account as query parameter
         });
         setBorrowingData(response.data);
       } catch (error) {
@@ -18,7 +24,15 @@ const BorrowingInformationPage = ({ userAccount }) => {
     };
 
     fetchBorrowingData();
-  }, [userAccount]);
+  }, [user]);
+
+  if (!user || !user.account) {
+    return (
+      <Typography variant="h6" color="error">
+        Please log in to view your borrowing information.
+      </Typography>
+    );
+  }
 
   return (
     <TableContainer component={Paper} sx={{ marginTop: 3 }}>
