@@ -1,8 +1,0 @@
-POST http://localhost:5000/user/login
-{
-  "account": "admin",
-  "password": "AdminPass2025"
-}
-
-// Borrow
-PUT http://localhost:5000/books/borrow/1
