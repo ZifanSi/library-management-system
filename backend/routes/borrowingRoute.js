@@ -1,7 +1,11 @@
 const express = require("express");
 const router = express.Router();
-const { getBorrowingInfo } = require("../controller/borrowingController");
+const { getBorrowingInfo, borrowBook } = require("../controller/borrowingController");
 
-router.get("/", getBorrowingInfo); // No authentication middleware
+// Route to fetch borrowing information
+router.get("/", getBorrowingInfo);
+
+// Route to borrow a book
+router.put("/borrow/:bid", borrowBook);
 
 module.exports = router;

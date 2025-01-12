@@ -1,8 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const { getBooks, borrowBook } = require('../controller/booksController'); // Import borrowBook
+const { getBooks } = require('../controller/booksController');
 
 router.get('/', getBooks);
-router.put("/borrow/:bid", borrowBook); // Borrow route
 
 module.exports = router;
