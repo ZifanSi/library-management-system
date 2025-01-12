@@ -1,6 +1,6 @@
 ## Features
 
-| Feature Code | Feature Name               | Description                                                                 |
+| ID | Feature Name               | Description                                                                 |
 |--------------|----------------------------|-----------------------------------------------------------------------------|
 | F01          | User Authentication        | Allows users to log in and log out securely.                               |
 | F02          | Book Search                | Users can search for books by title, author, or genre.                     |
